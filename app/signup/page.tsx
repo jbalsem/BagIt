@@ -26,7 +26,7 @@ export default function SignupPage() {   // <-- default export + returns JSX
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       // ✅ Redirect to dashboard
-      router.push('/'); // <-- Change this to wherever you want to send the user
+      router.push('/login'); // <-- Change this to wherever you want to send the user
     } catch (err: any) {
       setMsg(`❌ ${err.message}`);
     }
