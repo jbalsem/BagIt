@@ -2,10 +2,12 @@
 'use client';                     // <-- must be first line when you use hooks
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation'; // <-- NEW import ( login page)
 
 export default function SignupPage() {   // <-- default export + returns JSX
   const [form, setForm]   = useState({ name: '', email: '', password: '' });
   const [msg,  setMsg]    = useState('');
+  const router = useRouter(); // <-- NEW (login)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +22,11 @@ export default function SignupPage() {   // <-- default export + returns JSX
       if (!res.ok) throw new Error(data.error || 'Signup failed');
 
       setMsg(`🎉 Welcome, ${data.user.name}!`);
+      // ✅ Save token and user info to localStorage
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      // ✅ Redirect to dashboard
+      router.push('/'); // <-- Change this to wherever you want to send the user
     } catch (err: any) {
       setMsg(`❌ ${err.message}`);
     }
