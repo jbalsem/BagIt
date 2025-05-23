@@ -70,6 +70,15 @@ export default function SignupPage() {   // <-- default export + returns JSX
         </button>
 
         {msg && <p className="text-center text-sm">{msg}</p>}
+        <p className="text-center text-sm text-gray-600">
+          Already have an account?{' '}
+          <span
+            onClick={() => router.push('/login')}
+            className="cursor-pointer text-pink font-semibold hover:underline"
+          >
+            Log in
+          </span>
+        </p>
       </form>
     </main>
   );
